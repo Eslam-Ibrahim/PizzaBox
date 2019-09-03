@@ -1,0 +1,24 @@
+@{
+    Layout = "";
+}
+<head>
+    <title>Order Submission Receipt</title>
+		<style>
+			p {
+				border-left: 6px solid green;
+				background-color: lightcyan;
+			}
+</style>
+</head>
+
+
+<center>
+	<h1>-- Order Submission Receipt --</h1>
+	<hr>
+	<p>@ViewData["Msg"].</p>
+	
+	<form name="ReturnToMainView" id="ReturnToMainView" action="/User/MainView" method="post">
+		<input type="submit" name= "subButton" value="Return to homepage">
+		@Html.AntiForgeryToken()
+	</form>
+</center>

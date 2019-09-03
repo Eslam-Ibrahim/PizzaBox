@@ -1,0 +1,61 @@
+@{
+    Layout = "";
+}
+<head>
+    <title>Custom Pizza Selection</title>
+		    <style>
+        table {
+        border-collapse: collapse;
+        width: 100%;
+        }
+
+        th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:hover {background-color:#f5f5f5;}
+    </style>
+
+		<script type="text/javascript">
+			function check(){
+			count = 0;
+					for(x=0; x<document.CustomPizzaSelection.elements["pizzaToppingCodes"].length; x++){
+							if(document.CustomPizzaSelection.elements["pizzaToppingCodes"][x].checked==true){
+									count++;
+							}
+					}
+			
+					if(count<2){
+							alert("You must choose at least 2 Toppings");
+							return false;
+					}
+					else if(count>5){
+							alert("You can choose a maximum of 5 toppings");
+							return false;
+					}
+					else {
+					document.CustomPizzaSelection.submit();
+					}
+			}
+</script>
+
+</head>
+
+<form name="CustomPizzaSelection" id="CustomPizzaSelection" action="/Pizza/AddCustomPizza" method="post" onsubmit="return check()">
+<center>
+	<div>
+		<h1>Step 2-B: Custom Pizza Selection</h1>
+		</center>
+			@Html.Partial("_SizePartialView", PizzaBox.Data.Entities.PizzaSizeDataRetriever.GetInstance().PizzaSizeList)
+			@Html.Partial("_CrustPartialView", PizzaBox.Data.Entities.PizzaCrustDataRetriever.GetInstance().PizzaCrustList)	
+			@Html.Partial("_ToppingsPartialView", PizzaBox.Data.Entities.PizzaToppingsDataRetriever.GetInstance().PizzaToppingsList)	
+<center>
+      	<input type="submit" value="Add Pizza">
+      </form> 
+	</center>
+	</div>

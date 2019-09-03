@@ -1,0 +1,75 @@
+@{
+    Layout = "";
+}
+@model List<PizzaBox.Domain.Models.PizzaOrder>
+
+<head>
+    <title>Order History</title>
+    <style>
+        table {
+        border-collapse: collapse;
+        width: 100%;
+        }
+
+        th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:hover {background-color:#f5f5f5;}
+		
+        p {
+			border-left: 6px solid FireBrick;
+			background-color: LightSteelBlue;
+        }
+    </style>
+</head>
+
+<center>
+    <h1> Order History </h1>
+
+    @{
+        if (Model.Count == 0){
+            <p>No Order History Found!</p>
+        }else{
+            foreach (var item in Model){
+                <table>
+                    <tr>
+                        <th>Order #</th>
+                        <th>Pizza Count</th>
+                        <th>Order Total Cost</th>
+                    </tr>
+                    <tr>
+                        <td>@item.OrderID</td>
+                        <td>@item.GetTotalPizzaCount()</td>
+                        <td>$@item.GetTotalOrderCost()</td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <th>Pizza # </th>
+                        <th>Pizza Description</th>
+                        <th>Pizza Cost</th>
+                    </tr>
+                @for (int i = 0; i < @item.OrderItems.Count; i++){
+                    <tr>
+                        <td>@(i+1)</td>
+                        <td>@item.OrderItems[i].GetDescription()</td>
+                        <td>$@item.OrderItems[i].CalculateCost()</td>
+                    </tr>
+                }    
+                </table>
+                <hr>
+                <br>
+            }
+        }
+    }
+    <form name="ReturnToMainView" id="ReturnToMainView" action="/User/MainView" method="post">
+	    <input type="submit" name= "subButton" value="Return to homepage">
+		@Html.AntiForgeryToken()
+	</form>
+</center>

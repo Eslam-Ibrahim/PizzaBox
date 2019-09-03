@@ -1,0 +1,49 @@
+@model List<PizzaBox.Domain.Models.ShopLocation>;
+@{
+    Layout = "";
+}
+<head>
+    <title>Location Selection</title>
+		    <style>
+        table {
+        border-collapse: collapse;
+        width: 100%;
+        }
+
+        th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:hover {background-color:#f5f5f5;}
+    </style>
+</head>
+
+<center>
+	<div>
+		<h1>Step 1: Choose Order Location</h1>
+	<form name="LocationSelectionForm" id="LocationSelectionForm" action="/Location/LocationSelection" method="post">
+			<table>
+				<tr>
+        	<th>Location #</th>
+          <th>Location Description</th>
+					<th>Location Selection</th>
+          </tr>
+					@{
+						for (int i = 0; i < @Model.Count; i++){
+							<tr>
+              	<td>@(i+1)</td>
+                <td>@Model[i].ShopAddress</td>
+                <td><input type="radio" name="LocationId" value= "@Model[i].ShopID.ToString()" required></td>
+              </tr>
+						}
+					}
+			</table>			
+      	<input type="submit" value="Select Location">
+      </form> 
+	</div>
+	</center>

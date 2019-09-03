@@ -1,0 +1,24 @@
+@model List<PizzaBox.Domain.Abstracts.Ingredient>
+@{
+	Layout = "";
+}	
+
+		<h2>Pizza Toppings Selection:</h2>
+					<table>
+				<tr>
+        	<th>Topping #</th>
+          <th>Topping Description</th>
+					<th>Topping Cost</th>
+					<th>Topping Selection</th>
+          </tr>
+					@{
+						for (int i = 0; i < @Model.Count; i++){
+							<tr>
+              	<td>@(i+1)</td>
+                <td>@Model[i].Description</td>
+								<td>$@Model[i].Cost</td>
+                <td><input type="checkbox" name="pizzaToppingCodes" value= @i></td>
+              </tr>
+						}
+					}
+			</table>

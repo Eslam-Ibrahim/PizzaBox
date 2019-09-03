@@ -1,0 +1,24 @@
+@model List<PizzaBox.Domain.Abstracts.Ingredient>
+@{
+	Layout = "";
+}	
+
+		<h2>Pizza Size Selection:</h2>
+					<table>
+				<tr>
+        	<th>Size #</th>
+          <th>Size Description</th>
+					<th>Size Cost</th>
+					<th>Size Selection</th>
+          </tr>
+					@{
+						for (int i = 0; i < @Model.Count; i++){
+							<tr>
+              	<td>@(i+1)</td>
+                <td>@Model[i].Description</td>
+								<td>$@Model[i].Cost</td>
+                <td><input type="radio" name="pizzaSizeCode" value= @i required></td>
+              </tr>
+						}
+					}
+			</table>

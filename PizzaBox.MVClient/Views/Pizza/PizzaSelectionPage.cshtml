@@ -1,0 +1,31 @@
+@{
+    Layout = "";
+}
+<head>
+    <title>Pizza Type Selection</title>
+		<style>
+			p {
+				border-left: 6px solid green;
+				background-color: lightcyan;
+			}
+</style>
+</head>
+
+<center>
+	<h1>Step-2: Pizza Selection</h1>
+		<form name="PizzaSelectionForm" id="PizzaSelectionForm" action="/Pizza/PizzaSelection" method="post">
+			<label>1- Signature Pizza <input type="radio" name="pizzaType" value="1" required></label> <br>
+  		<label>2- Custom Pizza <input type="radio" name="pizzaType" value="2"></label> <br>
+			<input type="submit" value="Choose Pizza Type">
+		</form>
+		@{
+			if (@System.Convert.ToInt32(@ViewData["orderCount"]) >=1){
+				<p>@ViewData["Msg"]. Do you wish to review your order? 
+					<form name="PizzaOrderReview" id="PizzaOrderReview" action="/Order/PizzaOrderReview" method="post">
+						<input type="submit" value="Review Order Now!">
+					</form>
+				</p>
+			}
+		}
+		
+</center>

@@ -1,0 +1,25 @@
+@{
+    Layout = "";
+}
+<head>
+    <title> Sign-up Page </title>
+</head>
+<center>
+<div>
+    <h1 class="display-4">Create your new "PizzaBox" account now !!!</h1>
+    
+    <form name="SignUP" action="/User/SignUp" method="post">
+	    <fieldset>
+  	        <legend>User Account Info:</legend>
+						<label for="Uname">Username:</label> <input type="text" name="Username" id =Uname required>
+            <br/>
+            <br/>
+						<label for="Upassword">Password:</label> <input type="password" name="UserPassword" id =Upassword required>  
+            <br/>
+            <br/>
+            <label for="Umail">Email:</label> <input type="email" name="UserEmail" id =Umail required>
+        </fieldset>
+	    <button type="submit"> Sign-up Now! </button>
+        @Html.AntiForgeryToken()
+	</form>
+    </center>
